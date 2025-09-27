@@ -39,6 +39,20 @@ return [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
+            'session' => 'user_session', // Different session name
+            'cookie' => 'user_cookie',   // Different cookie name
+        ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+            'session' => 'admin_session', // Different session name
+            'cookie' => 'admin_cookie',   // Different cookie name
+        ],
+        'api' => [
+            'driver' => 'sanctum',
+            'provider' => 'users',
+            'session' => 'api_session', // Different session name
+            'cookie' => 'api_cookie',   // Different cookie name
         ],
     ],
 
@@ -59,10 +73,16 @@ return [
     |
     */
 
+
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\User::class),
+            'model' => App\Models\User::class,
+        ],
+
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\ads::class,
         ],
 
         // 'users' => [

@@ -3,7 +3,7 @@
         'name' => 'laravel/react-starter-kit',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'd3a3b3efbfcc7bb960c26fba9c7379b7ba953021',
+        'reference' => '02fad73afdc429186a7b6ef05ee1869545576991',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -556,7 +556,7 @@
         'laravel/react-starter-kit' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'd3a3b3efbfcc7bb960c26fba9c7379b7ba953021',
+            'reference' => '02fad73afdc429186a7b6ef05ee1869545576991',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -1091,8 +1091,8 @@
         'psr/simple-cache-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0|2.0|3.0',
-                1 => '2.0 || 3.0',
+                0 => '2.0 || 3.0',
+                1 => '1.0|2.0|3.0',
             ),
         ),
         'psy/psysh' => array(
