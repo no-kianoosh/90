@@ -1,0 +1,245 @@
+@font-face {
+    font-family: "Vazir";
+    src: url("../fonts/Vazir.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Nabi";
+    src: url("../fonts/Nabi.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: Vazir !important;
+    direction: rtl !important;
+}
+
+.logo-letter:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.logo-letter:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.logo-letter:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+.logo-letter:nth-child(4) {
+    animation-delay: 0.8s;
+}
+
+.logo-letter:nth-child(5) {
+    animation-delay: 1s;
+}
+
+.logo-letter:nth-child(6) {
+    animation-delay: 1.2s;
+}
+
+.logo-letter:nth-child(7) {
+    animation-delay: 1.4s;
+}
+
+.logo-letter:nth-child(8) {
+    animation-delay: 1.6s;
+}
+
+.logo-letter:nth-child(9) {
+    animation-delay: 1.8s;
+}
+
+.logo-letter:nth-child(10) {
+    animation-delay: 2s;
+}
+
+.logo-logo {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    position: relative;
+    animation: logo-float 2s ease-in-out infinite,
+        logo-scale 2s ease-in-out infinite;
+}
+
+@keyframes logo-float {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes logo-scale {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes logo-bounce {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-1px);
+    }
+}
+
+@keyframes logo-colorShift {
+    0% {
+        background: radial-gradient(circle, #ff512f, #dd2476);
+    }
+    100% {
+        background: radial-gradient(circle, #24c6dc, #514a9d);
+    }
+}
+
+.logo-letter {
+    display: inline-block;
+    animation: logo-colorCycle 3s infinite alternate,
+        logo-wiggle 2s ease-in-out infinite,
+        logo-glowText 1.5s infinite alternate;
+}
+
+@keyframes logo-colorCycle {
+    0% {
+        color: #f8f8f8;
+    }
+    25% {
+        color: #e45b5b;
+    }
+    50% {
+        color: #ebdd13;
+    }
+    75% {
+        color: #f58299;
+    }
+    100% {
+        color: #8ab53b;
+    }
+}
+
+@keyframes logo-wiggle {
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(-5deg);
+    }
+    50% {
+        transform: rotate(5deg);
+    }
+    75% {
+        transform: rotate(-5deg);
+    }
+}
+
+.logo-logo:hover .logo-letter {
+    color: #fff;
+    transform: scale(1.2);
+}
+
+.bg-cus1 {
+    background: linear-gradient(
+        45deg,
+        rgba(170, 255, 255, 1),
+        rgba(255, 255, 255, 1)
+    );
+}
+
+.sky-night {
+    background: linear-gradient(
+        to bottom,
+        #0a192f 0%,
+        #0a192f 50%,
+        #1a3658 100%
+    );
+}
+
+.sky-night-50 {
+    background: linear-gradient(
+        to bottom,
+        rgba(55, 128, 211, 0.7) 0%,
+        rgba(145, 193, 235, 0.7) 50%,
+        rgba(6, 54, 88, 0.7) 100%
+    );
+}
+.sky {
+    background: linear-gradient(
+        to bottom,
+        #3974ce 0%,
+        #fbfcfd 50%,
+        #3d86df 100%
+    );
+}
+
+.bg-sky-night-50 {
+    background: rgba(13, 74, 112, 0.7);
+}
+
+.btn-cus1 {
+    animation: shine 4s infinite linear;
+}
+
+@keyframes shine {
+    0% {
+        background: #2568cb;
+    }
+    50% {
+        background: #10a12d;
+    }
+    100% {
+        background: #2568cb;
+    }
+}
+
+.btn-pr {
+    cursor: pointer;
+    border-radius: 0.125rem; /* Tailwind's rounded-sm */
+    background-color: #0284c7; /* Tailwind's bg-sky-600 */
+    border: 1px solid #ffffff; /* Tailwind's border-white */
+    padding: 0.5rem 1rem; /* Tailwind's px-4 py-2 */
+    font-size: 0.875rem; /* Tailwind's text-sm */
+    font-weight: 400; /* Tailwind's font-normal */
+    text-align: center;
+    color: #ffffff; /* Tailwind's text-white */
+}
+
+.fji {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inp1 {
+    width: fit-content;
+    border-radius: 0.125rem; /* Tailwind's rounded-sm */
+    border: 1px solid #6b7280; /* Tailwind's border-gray-500 */
+    background-color: #ffffff; /* Tailwind's bg-white */
+    padding: 0.25rem 0.5rem; /* Tailwind's px-2 py-1 */
+    font-size: 0.875rem; /* Tailwind's text-sm */
+}
+.inp1:focus-visible {
+    outline: 2px solid #1e3a8a; /* Tailwind's outline-sky-900 */
+    outline-offset: 2px;
+}
+
+.txtar1 {
+    width: fit-content;
+    border-radius: 0.25rem; /* Assuming rounded-radius should be a custom value */
+    border: 1px solid #d1d5db; /* Tailwind's border-outline (assuming this is a custom color) */
+    background-color: #ffffff;
+    padding: 0.25rem 0.5rem 0.25rem 0.25rem; /* Tailwind's pr-2 pl-1 py-1 */
+    font-size: 0.875rem; /* Tailwind's text-sm */
+}

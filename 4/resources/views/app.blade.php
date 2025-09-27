@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fa" dir="rtl">
 
 <head>
     <meta charset="utf-8" />
@@ -14,3 +14,4 @@
 </body>
 
 </html>
+<script>
