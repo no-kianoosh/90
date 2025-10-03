@@ -1,12 +1,13 @@
 <?php
 
 use App\Events\NotificationSent;
+use App\Http\Controllers\Home\Home;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
+Route::get('/',  [Home::class, 'index']);
+Route::post('/rules',  [Home::class, 'rules']);
 
-Route::get('/', function () {
-    return inertia('Home');
-});
 
 
 Route::get('/ss', function () {

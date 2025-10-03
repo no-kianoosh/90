@@ -1,15 +1,20 @@
 
 import { DropdownMenu, Button, IconButton, Dialog, Flex, TextField } from "@radix-ui/themes";
-import { Car, List, Cross, CarTaxiFront, PersonStanding, Download } from "lucide-react";
+import { Car, List, Cross, CarTaxiFront, PersonStanding, Download, Search } from "lucide-react";
 import { useState } from "react"
+import { useContext } from 'react';
+import { scrollAndShine } from "../components/desk-comp/Card1";
+import { Download_Modal, Login_Modal, Rules_Modal } from "./Modals"
+import { G, GSet } from "./../bmr1"
 
 const NavigationDesktop = () => {
+
     return (
-        <nav className="flex items-center justify-between  px-6 py-3 shadow-md text-blue-900 rounded-sm m-1" style={{ background: "repeating-linear-gradient(180deg, #f9f9f9, #f9f9f9 1px, #e5e7eb 1px, #e5e7eb 2px)", }}>
+        <nav className="flex items-center justify-between bg-opacity-5 px-4 py-3 shadow-md text-blue-900 rounded-sm m-1">
             <div className="flex flex-row gap-3">
                 <DropdownMenu.Root dir="rtl">
                     <DropdownMenu.Trigger>
-                        <IconButton color="pink" variant="solid" >
+                        <IconButton color="pink" variant="solid" className=" !py-4.5">
                             <List width="18" height="18" />
                         </IconButton>
                     </DropdownMenu.Trigger>
@@ -33,54 +38,37 @@ const NavigationDesktop = () => {
 
                     </DropdownMenu.Content>
                 </DropdownMenu.Root>
-                <Button color="red" variant="surface" className="!border !cursor-pointer" >
+                <Button color="red" variant="surface" className="!border !cursor-pointer  !py-4.5 !bg-white"
+                    onClick={() => GSet((O) => { O.mod.login = true; O.user.type = "رانندگان" })}>
                     <div>ثبت سفر جدید</div>
                     <Cross width="18" height="18" />
                 </Button>
-                <Button color="blue" variant="surface" className="!border !cursor-pointer" >
+                <Button onClick={scrollAndShine} color="blue" variant="surface" className="!border !cursor-pointer !bg-white !py-4.5" >
                     <div>جستجوی سفر</div>
-                    <Car width="22" height="22" />
+                    <Search width="22" height="22" />
                 </Button>
-                <Button color="red" variant="classic" className="!border !cursor-pointer" >
+                <Button color="red" variant="classic" className="!border !cursor-pointer  !py-4.5" >
                     <div>ورود رانندگان</div>
                     <CarTaxiFront width="18" height="18" />
                 </Button>
-                <Button color="blue" variant="classic" className="!border !cursor-pointer" >
+                <Button color="blue" variant="classic" className="!border !cursor-pointer  !py-4.5" >
                     <div>ورود مسافران</div>
                     <PersonStanding width="18" height="18" />
                 </Button>
             </div>
             <div className="flex flex-row gap-3 items-center">
-                <Button color="jade" variant="solid" className="!border !cursor-pointer !flex-1" >
+                <Button onClick={() => GSet((O) => O.mod.download = true)}
+                    color="jade" variant="solid" className="!border !cursor-pointer !flex-1" >
                     <div>دانلود</div>
                     <Download height="18" />
                 </Button>
+                <Download_Modal />
+                <Login_Modal />
+                <Rules_Modal />
                 <img className="size-10 rounded-2xl border border-lime-400" src="/img/logo.jpg" alt="Login background" />
-                <ProfileDialog />
             </div>
-
-        </nav>
+        </nav >
     );
-
-    function ProfileDialog() {
-        const [open, setOpen] = useState(false);
-
-        // JS function to open dialog
-        const openDialog = () => setOpen(true);
-        const closeDialog = () => setOpen(false);
-
-        return (
-            <>
-                <Button onClick={openDialog}>Open via JS</Button>
-                <Dialog.Root open={open} onOpenChange={setOpen}>
-                    <Dialog.Content maxWidth="450px" onInteractOutside={(event) => event.preventDefault()}>
-                        <div className="bg-blue-400 min-h-100"></div>
-                    </Dialog.Content>
-                </Dialog.Root>
-            </>
-        );
-    }
-
 };
 
 

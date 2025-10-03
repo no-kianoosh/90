@@ -764,8 +764,11 @@ class ComposerStaticInitc514d8f7b9fc5970bdd94287905ef584
     );
 
     public static $classMap = array (
+        'App\\Events\\NotificationSent' => __DIR__ . '/../..' . '/app/Events/NotificationSent.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Middleware\\HandleInertiaRequests' => __DIR__ . '/../..' . '/app/Http/Middleware/HandleInertiaRequests.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
+        'App\\Models\\ads' => __DIR__ . '/../..' . '/app/Models/ads.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'Assert\\Assert' => __DIR__ . '/..' . '/beberlei/assert/lib/Assert/Assert.php',
         'Assert\\Assertion' => __DIR__ . '/..' . '/beberlei/assert/lib/Assert/Assertion.php',

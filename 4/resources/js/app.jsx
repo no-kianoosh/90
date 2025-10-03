@@ -1,29 +1,31 @@
-import './bootstrap';
-import '../css/app.css';
-import '../css/mine.css';
+import './bootstrap'; // Laravel bootstrap
+import '../css/tialwind';   // Tailwind
+import '../css/mine.css';  // your custom CSS
+// import '../css/app.css';  // Tailwind CSS
 
-
-import { createInertiaApp } from '@inertiajs/react'
-import { createRoot } from 'react-dom/client'
+import { createInertiaApp } from '@inertiajs/react';
+import { createRoot } from 'react-dom/client';
 
 createInertiaApp({
-  resolve: name => {
-    const pages = import.meta.glob('./Pages/**/*.jsx', { eager: true })
-    const page = pages[`./Pages/${name}/${name}.jsx`]
+  resolve: (name) => {
+    // Eager import all pages
+    const pages = import.meta.glob('./Pages/**/*.jsx', { eager: true });
+    const page = pages[`./Pages/${name}/${name}.jsx`];
 
     if (!page) {
-      console.error(`Page not found: ${name}`)
-      return
+      console.error(`Page not found: ${name}`);
+      return;
     }
 
     if (!page.default) {
-      console.error(`Page "${name}" does not have a default export`, page)
-      return
+      console.error(`Page "${name}" does not have a default export`, page);
+      return;
     }
 
-    return page.default
+    return page.default;
   },
+
   setup({ el, App, props }) {
-    createRoot(el).render(<App {...props} />)
+    createRoot(el).render(<App {...props} />);
   },
-})
+});

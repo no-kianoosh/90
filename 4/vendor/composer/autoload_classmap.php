@@ -6,8 +6,11 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Events\\NotificationSent' => $baseDir . '/app/Events/NotificationSent.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
+    'App\\Http\\Middleware\\HandleInertiaRequests' => $baseDir . '/app/Http/Middleware/HandleInertiaRequests.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
+    'App\\Models\\ads' => $baseDir . '/app/Models/ads.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'Assert\\Assert' => $vendorDir . '/beberlei/assert/lib/Assert/Assert.php',
     'Assert\\Assertion' => $vendorDir . '/beberlei/assert/lib/Assert/Assertion.php',
