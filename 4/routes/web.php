@@ -1,12 +1,42 @@
 <?php
 
-use App\Events\NotificationSent;
-use App\Http\Controllers\Home\Home;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Middleware\chksta;
+use App\Events\NotificationSent;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Home\Home;
+use App\Http\Controllers\Driver\Driver;
+use App\Http\Controllers\Rider\Rider;
+use App\Http\Controllers\Register\Register;
 
-Route::get('/',  [Home::class, 'index']);
-Route::post('/rules',  [Home::class, 'rules']);
+// ------------------------ Others ------------------------
+Route::fallback(function () {
+    return redirect(route("login"));
+});
+// ------------------------ Home Page ------------------------
+Route::middleware('throttle:homepage')->controller(Home::class)->group(function () {
+    Route::get('/', 'index')->name("login");;
+    Route::post('/code', 'sendcode');
+    Route::post('/verify', 'verify');
+});
+// ------------------------ Driver Page ------------------------
+Route::middleware([chksta::class, 'throttle:user'])->controller(Driver::class)->group(function () {
+    Route::get('/driver', 'index')->name("drv-ok");
+});
+// ------------------------ Rider Page ------------------------
+Route::middleware([chksta::class, 'throttle:user'])->controller(Rider::class)->group(function () {
+    Route::get('/rider', 'index')->name("mos-ok");
+});
+// ------------------------ Register Page ------------------------
+Route::middleware([chksta::class, 'throttle:user'])->controller(Register::class)->group(function () {
+    Route::get('/driver-register', 'drvreg')->name("drv-not-reg");
+    Route::get('/rider-register', 'mosreg')->name("mos-not-reg");
+    Route::get('/driver-pending', 'drvpending')->name("drv-chk-reg");
+});
+
+
+
 
 
 

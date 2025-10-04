@@ -13,7 +13,7 @@
 
 * {
     font-family: Vazir !important;
-    direction: rtl !important;
+    direction: rtl ;
 }
 
 .logo-letter:nth-child(1) {

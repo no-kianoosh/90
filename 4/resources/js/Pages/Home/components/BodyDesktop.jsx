@@ -3,6 +3,8 @@ import TrvTable from "./desk-comp/Table";
 import Card1 from "./desk-comp/Card1";
 import Card2 from "./desk-comp/Card2";
 
+import { usePage } from '@inertiajs/react'
+
 const BodyDesktop = () => {
     return (
         <div className="flex flex-col">
@@ -13,10 +15,11 @@ const BodyDesktop = () => {
                     alt="Background"
                 />
                 <div className="absolute top-15 w-full text-center text-[200%] text-white">
-                    Hop on Baby
+                    Hop on Baby   <div>{usePage().props.dat?.name}</div>
                 </div>
                 <div className="absolute -bottom-[15px] max-w-[95%] w-full text-center flex items-center justify-center">
                     <SearchBox />
+
                 </div>
             </div>
             <TrvTable />

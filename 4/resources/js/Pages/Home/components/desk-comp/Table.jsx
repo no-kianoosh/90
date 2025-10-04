@@ -3,6 +3,7 @@ import { router } from '@inertiajs/react'
 import axios from 'axios'
 import { usePage } from '@inertiajs/react';
 import { LoaderCircle } from 'lucide-react';
+import { G, GSet } from "./../../bmr1"
 
 export default function TrvTable() {
     const { props } = usePage();
@@ -30,7 +31,8 @@ export default function TrvTable() {
                     </thead>
                     <tbody>
                         {travels.data.map((user) => (
-                            <tr key={user.id} className="hover:bg-green-200 text-center even:bg-lime-50 odd:bg-white transition-colors text-nowrap cursor-pointer">
+                            <tr key={user.id} className="hover:bg-green-200 text-center even:bg-lime-50 odd:bg-white transition-colors text-nowrap cursor-pointer"
+                                onClick={() => GSet((O) => { O.mod.login = true; O.user.type = "مسافران" })}>
                                 <td className='border border-gray-300 p-2 text-center items-center'>
                                     <div className="w-2 h-2 bg-green-500 rounded-xs animate-spin"></div>
                                 </td>

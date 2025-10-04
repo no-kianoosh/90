@@ -4,7 +4,7 @@ import { Car, List, Cross, CarTaxiFront, PersonStanding, Download, Search } from
 import { useState } from "react"
 import { useContext } from 'react';
 import { scrollAndShine } from "../components/desk-comp/Card1";
-import { Download_Modal, Login_Modal, Rules_Modal } from "./Modals"
+import { Download_Modal, Rules_Modal, Login_Modal } from "./Modals"
 import { G, GSet } from "./../bmr1"
 
 const NavigationDesktop = () => {
@@ -47,11 +47,13 @@ const NavigationDesktop = () => {
                     <div>جستجوی سفر</div>
                     <Search width="22" height="22" />
                 </Button>
-                <Button color="red" variant="classic" className="!border !cursor-pointer  !py-4.5" >
+                <Button color="red" variant="classic" className="!border !cursor-pointer  !py-4.5"
+                    onClick={() => GSet((O) => { O.mod.login = true; O.user.type = "رانندگان" })}>
                     <div>ورود رانندگان</div>
                     <CarTaxiFront width="18" height="18" />
                 </Button>
-                <Button color="blue" variant="classic" className="!border !cursor-pointer  !py-4.5" >
+                <Button color="blue" variant="classic" className="!border !cursor-pointer  !py-4.5"
+                    onClick={() => GSet((O) => { O.mod.login = true; O.user.type = "مسافران" })}>
                     <div>ورود مسافران</div>
                     <PersonStanding width="18" height="18" />
                 </Button>

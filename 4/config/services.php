@@ -13,6 +13,11 @@ return [
     | a conventional file to locate the various service credentials.
     |
     */
+    'raygansms' => [
+        'user_name' => env('RAYGANSMS_USERNAME'),
+        'password' => env('RAYGANSMS_PASSWORD'),
+        'phone_number' => env('RAYGANSMS_PHONE_NUMBER'),
+    ],
 
     'postmark' => [
         'token' => env('POSTMARK_TOKEN'),

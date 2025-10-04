@@ -14,7 +14,7 @@ export const G = create(
             b2: false,
         },
         user: {
-            type: "",
+            type: "مسافران",
         },
 
         Update: (fn) =>
