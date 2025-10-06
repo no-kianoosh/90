@@ -167,7 +167,8 @@ export function Login_Modal() {
                 return;
             }
             ALRT_OK(r.data.msg);
-            window.location.href = r.data.redirect_to;
+            GSet((o) => o.mod.login = false);
+            window.location.reload();
         } catch (error) {
             progress.finish()
             loadSet(false);

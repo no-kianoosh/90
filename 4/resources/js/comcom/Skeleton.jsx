@@ -1,0 +1,49 @@
+import React, { useEffect, useState } from "react";
+import { LoaderCircle } from "lucide-react";
+
+export default function PageLoader({ children, delay = 1000 }) {
+    const [ready, setReady] = useState(false);
+    const [rd, setRD] = useState(false);
+
+    useEffect(() => {
+        // Step 1: Handle document ready
+        const handleReady = () => {
+            setRD(true);
+            setTimeout(() => setReady(true), delay);
+        };
+
+        if (document.readyState === "complete") {
+            handleReady();
+        } else {
+            window.addEventListener("load", handleReady);
+            return () => window.removeEventListener("load", handleReady);
+        }
+    }, [delay]);
+
+    return (
+        <div className="fji">
+            {!ready ?
+                <div className="fixed inset-0 fji w-full h-full bg-[rgba(0,0,0,0.3)] z-[9999]">
+                    <div className="relative fji">
+                        <LoaderCircle className="absolute animate-spin text-white size-70" strokeWidth=".2" />
+                        <LoaderCircle className="absolute animate-spin text-white size-73" strokeWidth=".1" />
+                        <span className="absolute text-4xl" style={{ opacity: rd ? 0 : 1, transition: "opacity 0.5s ease-in-out" }}>
+                            ❤️
+                        </span>
+                        <span className="absolute text-3xl text-white" style={{ opacity: rd ? 1 : 0, transition: "opacity 0.5s ease-in-out" }}>
+                            HoPoN
+                        </span>
+                    </div>
+                </div>
+                : <></>}
+            <div className=" relative" style={{ opacity: ready ? 1 : 0, transition: "opacity .3s ease-in-out", }}>
+                <div style={{ opacity: ready ? 1 : 0, transition: "opacity .4s ease-in-out", }}>
+                    {children}
+
+                </div>
+            </div>
+        </div>
+    );
+}
+
+

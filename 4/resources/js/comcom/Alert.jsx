@@ -45,9 +45,10 @@ export default function Alert() {
     };
 
     return (
-        <div className="fixed bottom-2 left-1/2 transform -translate-x-1/2 w-screen max-w-md z-[2000]">
+        <div className="fixed top-2 left-1/2 transform -translate-x-1/2 w-screen max-w-md z-[2000]">
             <div
-                className={`rounded-md border-2 p-3 flex items-center gap-3 ${typeClasses[alert.type]}`}
+                className={`rounded-md border-1 py-1.5 px-3 flex items-center gap-3 ${typeClasses[alert.type]}`}
+                style={{ boxShadow: "0 0 10px 1px rgba(255, 255, 255, 0.8)" }}
             >
                 <button
                     onClick={hideAlert}
@@ -58,9 +59,9 @@ export default function Alert() {
 
                 <div className="flex-1 text-center">
                     {alert.header && (
-                        <div className="text-sm  mb-2">{alert.header}</div>
+                        <div className="text-xs  mb-2">{alert.header}</div>
                     )}
-                    <div className="text-xs">{alert.message}</div>
+                    <div className="text-[75%]">{alert.message}</div>
                 </div>
 
                 <div className={`rounded-full p-2 flex-shrink-0 ${iconClasses[alert.type]}`}>

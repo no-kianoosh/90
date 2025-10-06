@@ -9,6 +9,7 @@ use App\Http\Controllers\Home\Home;
 use App\Http\Controllers\Driver\Driver;
 use App\Http\Controllers\Rider\Rider;
 use App\Http\Controllers\Register\Register;
+use App\Http\Middleware\chkauth;
 
 // ------------------------ Others ------------------------
 Route::fallback(function () {
@@ -34,7 +35,19 @@ Route::middleware([chksta::class, 'throttle:user'])->controller(Register::class)
     Route::get('/rider-register', 'mosreg')->name("mos-not-reg");
     Route::get('/driver-pending', 'drvpending')->name("drv-chk-reg");
 });
-
+Route::middleware([chkauth::class, 'throttle:user'])->controller(Register::class)->group(function () {
+    Route::post('/upload', 'upload_img')->name("upload");
+    Route::post('/driver-info', 'driver_info')->name("driver-info");
+});
+// ------------------------ Logout ------------------------
+Route::middleware([chkauth::class, 'throttle:user'])->group(function () {
+    Route::post('/logout', function () {
+        Auth::logout();
+        session()->flush();
+        return redirect('/');
+    });
+    //sss
+});
 
 
 
