@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { ALRT_ERR } from "@/comcom/Alert";
-import clsx from "clsx";
+import { usePage } from '@inertiajs/react'
 
+import clsx from "clsx";
 
 export function CharInput({
     value = "",
@@ -341,5 +342,67 @@ export function NumInput({
                 </div>
             )}
         </div>
+    );
+}
+
+export function Clock({ className = "", style = {} }) {
+    const [time, setTime] = useState(new Date());
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setTime(new Date());
+        }, 1000);
+
+        return () => clearInterval(interval);
+    }, []);
+
+    const formatTime = (date) => {
+        let h = date.toLocaleTimeString("fa-IR", {
+            hour: "2-digit",
+            hour12: false,
+            timeZone: "Asia/Tehran",
+        });
+        let m = date.toLocaleTimeString("fa-IR", {
+            minute: "2-digit",
+            hour12: false,
+            timeZone: "Asia/Tehran",
+        });
+        let s = date.toLocaleTimeString("fa-IR", {
+            second: "2-digit",
+            hour12: false,
+            timeZone: "Asia/Tehran",
+        });
+        return <div className="fji gap-1" style={{ direction: "ltr" }}>
+            <span>{h}</span>
+            :
+            <span>{m}</span>
+            :
+            <span>{s}</span>
+        </div>
+    };
+    return (
+        <div className={`min-w-[100px] flex items-center justify-center ${className}`}>
+            {formatTime(time)}
+        </div>
+    );
+};
+
+export function LogoutBtn() {
+    const handleLogout = async () => {
+        try {
+            await axios.post("/logout");
+            window.location.reload();
+        } catch (err) {
+            console.error("Logout failed:", err);
+        }
+    };
+
+    return (
+        <button
+            onClick={handleLogout}
+            className="cursor-pointer bg-orange-500 text-white text-sm rounded-sm px-3 py-1 hover:bg-red-700"
+        >
+            خروج
+        </button>
     );
 }

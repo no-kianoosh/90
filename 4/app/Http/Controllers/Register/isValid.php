@@ -32,6 +32,27 @@ class isValid
         }
         return [true, ""];
     }
+
+    public static function validate_image_mos($p)
+    {
+        //
+        if (($validator = self::isvalid($p, ['imgname', 'img']))->fails()) {
+            info("img failed");
+            return [false, response()->json(['suc' => false, 'msg' => $validator->errors()->first()])];
+        }
+        return [true, ""];
+    }
+
+
+    public static function validate_mos_info_request($p)
+    {
+        //
+        if (($validator = self::isvalid($p, ['firstName', 'LastName', 'mcode', 'email']))->fails()) {
+            info("validator failed");
+            return [false, response()->json(['suc' => false, 'msg' => $validator->errors()->first()])];
+        }
+        return [true, ""];
+    }
     public static function validate_drv_info_request($p)
     {
         //

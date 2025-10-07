@@ -6,7 +6,7 @@ import NavigationDesktop from "./components/NavigationDesktop";
 import BodyDesktop from "./components/BodyDesktop";
 import Footer from "./components/footer";
 import Alert from "../../comcom/Alert";
-import Load from "@/comcom/Skeleton"
+import Load from "@/comcom/Preload"
 
 const App = () => {
     return (

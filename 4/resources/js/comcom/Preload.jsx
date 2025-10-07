@@ -8,7 +8,7 @@ export default function PageLoader({ children, delay = 1000 }) {
     useEffect(() => {
         // Step 1: Handle document ready
         const handleReady = () => {
-            setRD(true);
+            setTimeout(() => setRD(true), 300);
             setTimeout(() => setReady(true), delay);
         };
 
@@ -27,8 +27,10 @@ export default function PageLoader({ children, delay = 1000 }) {
                     <div className="relative fji">
                         <LoaderCircle className="absolute animate-spin text-white size-70" strokeWidth=".2" />
                         <LoaderCircle className="absolute animate-spin text-white size-73" strokeWidth=".1" />
-                        <span className="absolute text-4xl" style={{ opacity: rd ? 0 : 1, transition: "opacity 0.5s ease-in-out" }}>
-                            ❤️
+                        <span className="absolute fji flex-row text-4xl" style={{ opacity: rd ? 0 : 1, transition: "opacity 0.5s ease-in-out" }}>
+                            <span>🌳</span>
+                            <span>❤️</span>
+                            <span>🌳</span>
                         </span>
                         <span className="absolute text-3xl text-white" style={{ opacity: rd ? 1 : 0, transition: "opacity 0.5s ease-in-out" }}>
                             HoPoN

@@ -178,12 +178,12 @@ export function Login_Modal() {
     return (
         <Modal open={G((O) => O.mod.login)} closeOnClickOutside={false} onClose={close} title={" ورود به ترمینال " + userType} >
             {!verifyPage &&
-                <div className="px-5 flex flex-col justify-center items-center">
+                <div className="px-4 flex flex-col justify-center items-center">
                     <div className="flex flex-row gap-3 mt-1">
-                        <div onClick={() => GSet((o) => o.user.type = "رانندگان")} className={"fji flex-col py-1.5 px-5 rounded-sm border " + (userType == "رانندگان" ? "border-1 border-sky-600 bg-blue-600 text-white" : "bg-white text-gray-400 border-gray-200")}>
+                        <div onClick={() => GSet((o) => o.user.type = "رانندگان")} className={"fji flex-col py-1 px-5 rounded-sm border " + (userType == "رانندگان" ? "border-1 border-sky-600 bg-blue-600 text-white" : "bg-white text-gray-400 border-gray-200")}>
                             راننـده
                         </div>
-                        <div onClick={() => GSet((o) => o.user.type = "مسافران")} className={"fji flex-col py-1.5 px-5 rounded-sm border " + (userType == "مسافران" ? "border-1 border-sky-600 bg-blue-600 text-white" : "bg-white text-gray-400 border-gray-200")}>
+                        <div onClick={() => GSet((o) => o.user.type = "مسافران")} className={"fji flex-col py-1 px-5 rounded-sm border " + (userType == "مسافران" ? "border-1 border-sky-600 bg-blue-600 text-white" : "bg-white text-gray-400 border-gray-200")}>
                             مسافر
                         </div>
                     </div>

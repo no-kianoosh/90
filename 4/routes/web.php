@@ -38,12 +38,15 @@ Route::middleware([chksta::class, 'throttle:user'])->controller(Register::class)
 Route::middleware([chkauth::class, 'throttle:user'])->controller(Register::class)->group(function () {
     Route::post('/upload', 'upload_img')->name("upload");
     Route::post('/driver-info', 'driver_info')->name("driver-info");
+    Route::post('/fin-driver-info', 'fin_driver_info')->name("fin-driver-info");
+    Route::post('/uploadmos', 'upload_img_mos')->name("upload");
+    Route::post('/mos-info', 'mos_info')->name("driver-info");
+    Route::post('/fin-mos-info', 'fin_mos_info')->name("fin-mos-info");
 });
 // ------------------------ Logout ------------------------
 Route::middleware([chkauth::class, 'throttle:user'])->group(function () {
     Route::post('/logout', function () {
         Auth::logout();
-        session()->flush();
         return redirect('/');
     });
     //sss

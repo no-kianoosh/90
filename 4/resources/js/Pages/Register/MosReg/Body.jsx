@@ -27,33 +27,18 @@ const Body = () => {
     const [percent, setPercent] = useState(0);
     const [successfull, setSeccessfull] = useState(false);
     const [step2Selected, setStep2Selected] = useState(false);
-    const [step3Selected, setStep3Selected] = useState(false);
-    const [step4Selected, setStep4Selected] = useState(false);
-    const [step5Selected, setStep5Selected] = useState(false);
-    const [step6Selected, setStep6Selected] = useState(false);
-    const [step7Selected, setStep7Selected] = useState(false);
-
-    const maxStep = 8;
+    const maxStep = 3;
 
     const handleStep = async (action) => {
         if (action === "inc" && step < maxStep) {
             if (step === 1 && await validateStep1()) setStep(step + 1);
-            else if (step === 2 && step2Selected) setStep(step + 1);
             else if (step === 2 && !step2Selected) ALRT_ERR("لطفا عکس چهره خود را ارسال کنید");
-            else if (step === 3 && step3Selected) setStep(step + 1);
-            else if (step === 3 && !step3Selected) ALRT_ERR("لطفا عکس روی گواهینامه خود را ارسال کنید");
-            else if (step === 4 && step4Selected) setStep(step + 1);
-            else if (step === 4 && !step4Selected) ALRT_ERR("لطفا عکس پشت گواهینامه خود را ارسال کنید");
-            else if (step === 5 && step5Selected) setStep(step + 1);
-            else if (step === 5 && !step5Selected) ALRT_ERR("لطفا عکس روی کارت ماشین خود را ارسال کنید");
-            else if (step === 6 && step6Selected) setStep(step + 1);
-            else if (step === 6 && !step6Selected) ALRT_ERR("لطفا عکس پشت کارت ماشین خود را ارسال کنید");
-            else if (step === 7 && !step7Selected) ALRT_ERR("لطفا عکس بیمه نامه خود را ارسال کنید");
-            else if (step === 7 && step7Selected) {
+            else if (step === 2 && step2Selected) {
+
                 try {
                     progress.start();
                     setLoading(true);
-                    const r = await axios.post("/fin-driver-info");
+                    const r = await axios.post("/fin-mos-info");
                     progress.finish();
                     setLoading(false);
                     if (!r.data.suc) {
@@ -74,7 +59,6 @@ const Body = () => {
                     setLoading(false);
                 }
             }
-
         } else if (action === "dec" && step > 1) {
             setStep(step - 1);
         }
@@ -110,7 +94,7 @@ const Body = () => {
         try {
             progress.start();
             setLoading(true);
-            const r = await axios.post("/driver-info", formData);
+            const r = await axios.post("/mos-info", formData);
             progress.finish();
             setLoading(false);
             if (!r.data.suc) {
@@ -146,12 +130,12 @@ const Body = () => {
             {successfull &&
                 <div className="fji flex-col m-2 p-6 text-white gap-3 bg-gray-400/10 rounded-2xl">
                     <span>ضمن تشکر از شما، ثبت نام با موفقیت انجام شد </span>
-                    <span> نتیجه از طریق  پیامک برای شما ارسال می شود</span>
+                    <span> در حال انتقال به صفحه شخصی...</span>
                 </div>}
             {!successfull && <div className="w-fit h-full fji flex-col gap-3 text-sm bg-white bg-3d rounded-lg py-3 mx-2 px-6 text-xs">
                 {/* Step 1 */}
                 <div hidden={step !== 1} className="text-black space-y-2 fji flex-col">
-                    <Header>ثبت نام راننده</Header>
+                    <Header>ثبت نام مسافر</Header>
                     <div className="space-y-3">
                         <div className="fji flex-col">
                             <Label>نام</Label>
@@ -230,103 +214,13 @@ const Body = () => {
                             className="my-4"
                             id={"faceimg"}
                             size={200}
-                            routeName="upload"
+                            routeName="uploadmos"
                             dat={{ imgname: "faceimg" }}
                             onUploadProcess={(p) => setPercent(p)}
                             setLoading={setLoading}
                             setSelectedOrNot={setStep2Selected}
                         />
                         <Label className="w-full fji p-0 m-0">لطفا عکس چهره خود را ارسال کنید</Label>
-                    </div>
-                </div>
-
-                {/* Step 3 */}
-                <div hidden={step !== 3} className="text-black space-y-2 fji flex-col">
-                    <Header>عکس گواهینامه - رو</Header>
-                    <div className="space-y-3">
-                        <ImgInput
-                            className="my-4"
-                            id={"liccard1"}
-                            size={200}
-                            routeName="upload"
-                            dat={{ imgname: "liccard1" }}
-                            onUploadProcess={(p) => setPercent(p)}
-                            setLoading={setLoading}
-                            setSelectedOrNot={setStep3Selected}
-                        />
-                        <Label className="w-full fji p-0 m-0">لطفا عکس روی گواهینامه خود را ارسال کنید</Label>
-                    </div>
-                </div>
-
-                {/* Step 4 */}
-                <div hidden={step !== 4} className="text-black space-y-2 fji flex-col">
-                    <Header>عکس گواهینامه - پشت</Header>
-                    <div className="space-y-3">
-                        <ImgInput
-                            className="my-4"
-                            id={"liccard2"}
-                            size={200}
-                            routeName="upload"
-                            dat={{ imgname: "liccard2" }}
-                            onUploadProcess={(p) => setPercent(p)}
-                            setLoading={setLoading}
-                            setSelectedOrNot={setStep4Selected}
-                        />
-                        <Label className="w-full fji p-0 m-0">لطفا عکس پشت گواهینامه خود را ارسال کنید</Label>
-                    </div>
-                </div>
-
-                {/* Step 5 */}
-                <div hidden={step !== 5} className="text-black space-y-2 fji flex-col">
-                    <Header>عکس کارت ماشین - رو</Header>
-                    <div className="space-y-3">
-                        <ImgInput
-                            className="my-4"
-                            id={"carcard1"}
-                            size={200}
-                            routeName="upload"
-                            dat={{ imgname: "carcard1" }}
-                            onUploadProcess={(p) => setPercent(p)}
-                            setLoading={setLoading}
-                            setSelectedOrNot={setStep5Selected}
-                        />
-                        <Label className="w-full fji p-0 m-0">لطفا عکس روی کارت ماشین خود را ارسال کنید</Label>
-                    </div>
-                </div>
-
-                {/* Step 6 */}
-                <div hidden={step !== 6} className="text-black space-y-2 fji flex-col">
-                    <Header>عکس کارت ماشین - پشت</Header>
-                    <div className="space-y-3">
-                        <ImgInput
-                            className="my-4"
-                            id={"carcard2"}
-                            size={200}
-                            routeName="upload"
-                            dat={{ imgname: "carcard2" }}
-                            onUploadProcess={(p) => setPercent(p)}
-                            setLoading={setLoading}
-                            setSelectedOrNot={setStep6Selected}
-                        />
-                        <Label className="w-full fji p-0 m-0">لطفا عکس پشت کارت ماشین خود را ارسال کنید</Label>
-                    </div>
-                </div>
-
-                {/* Step 7 */}
-                <div hidden={step !== 7} className="text-black space-y-2 fji flex-col">
-                    <Header>عکس بیمه نامه</Header>
-                    <div className="space-y-3">
-                        <ImgInput
-                            className="my-4"
-                            id={"Bimename"}
-                            size={200}
-                            routeName="upload"
-                            dat={{ imgname: "Bimename" }}
-                            onUploadProcess={(p) => setPercent(p)}
-                            setLoading={setLoading}
-                            setSelectedOrNot={setStep7Selected}
-                        />
-                        <Label className="w-full fji p-0 m-0">لطفا عکس بیمه نامه ماشین خود را ارسال کنید</Label>
                     </div>
                 </div>
 
