@@ -21,7 +21,7 @@ export default function PageLoader({ children, delay = 1000 }) {
     }, [delay]);
 
     return (
-        <div className="fji">
+        <div className="w-full" style={{ background: "repeating-linear-gradient(180deg,#000 3px,#19085f 9px)", fontFamily: "!Vazir", direction: "rtl" }}>
             {!ready ?
                 <div className="fixed inset-0 fji w-full h-full bg-[rgba(0,0,0,0.3)] z-[9999]">
                     <div className="relative fji">
@@ -38,10 +38,9 @@ export default function PageLoader({ children, delay = 1000 }) {
                     </div>
                 </div>
                 : <></>}
-            <div className=" relative" style={{ opacity: ready ? 1 : 0, transition: "opacity .3s ease-in-out", }}>
-                <div style={{ opacity: ready ? 1 : 0, transition: "opacity .4s ease-in-out", }}>
+            <div className="w-full" style={{ opacity: ready ? 1 : 0, transition: "opacity .3s ease-in-out", }}>
+                <div className="w-full" style={{ opacity: ready ? 1 : 0, transition: "opacity .4s ease-in-out", }}>
                     {children}
-
                 </div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useContext } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { SquareX } from "lucide-react";
 
 export default function Modal({ open, closeOnClickOutside = false, onClose, children, title, z = 50 }) {

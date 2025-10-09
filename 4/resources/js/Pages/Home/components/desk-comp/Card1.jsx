@@ -1,19 +1,4 @@
-export function scrollAndShine() {
-    const el = document.getElementById("search-box");
-    if (!el) return;
-
-    el.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-        inline: "nearest",
-    });
-
-    el.classList.add("shine-effect");
-
-    setTimeout(() => {
-        el.classList.remove("shine-effect");
-    }, 1500);
-};
+import { scrollAndShine } from "@/comcom/Mine";
 
 export default function Card() {
     return (

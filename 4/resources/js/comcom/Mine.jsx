@@ -1,8 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, forwardRef, createContext, useContext, } from "react";
+import { createPortal } from "react-dom";
+import { createRoot } from "react-dom/client"
 import { ALRT_ERR } from "@/comcom/Alert";
 import { usePage } from '@inertiajs/react'
 
 import clsx from "clsx";
+import { Loader } from "lucide-react";
 
 export function CharInput({
     value = "",
@@ -387,13 +390,22 @@ export function Clock({ className = "", style = {} }) {
     );
 };
 
+export function Loadw({ size = 17, color = "white", className = "" }) {
+    return <Loader size={size} className={"animate-spin " + className} color={color} />
+}
+
 export function LogoutBtn() {
+    const [loading, setLoading] = useState(false);
+
     const handleLogout = async () => {
         try {
+            setLoading(true);
             await axios.post("/logout");
             window.location.reload();
+            setLoading(false);
         } catch (err) {
             console.error("Logout failed:", err);
+            setLoading(false);
         }
     };
 
@@ -401,8 +413,90 @@ export function LogoutBtn() {
         <button
             onClick={handleLogout}
             className="cursor-pointer bg-orange-500 text-white text-sm rounded-sm px-3 py-1 hover:bg-red-700"
+            disabled={loading}
         >
-            خروج
+            {loading ? <Loadw /> : "خروج"}
         </button>
     );
 }
+
+export function scrollAndShine() {
+    const el = document.getElementById("search-box");
+    if (!el) return;
+
+    el.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+        inline: "nearest",
+    });
+
+    el.classList.add("shine-effect");
+
+    setTimeout(() => {
+        el.classList.remove("shine-effect");
+    }, 1500);
+};
+
+export const Button = forwardRef(function Button(
+    {
+        variant = "solid",
+        className = "",
+        style,
+        children,
+        ...props
+    },
+    ref
+) {
+    const variantMap = {
+        solid:
+            "hover:brightness-90 mt-1",
+        classic:
+            " hover:brightness-80 transition-all duration-100 shadow-[inset_0_2px_3px_rgba(255,255,255,0.9)] active:shadow-[inset_0_4px_6px_rgba(0,0,0,0.5)]",
+    };
+
+    const variantClasses = variantMap[variant];
+
+    return (
+        <div className="fji p-1">
+            <div className={"fji " + (variant == "classic" ? "pt-1 active:pt-0" : "")}>
+                <button
+                    ref={ref}
+                    style={style}
+                    className={clsx(
+                        "fji p-1.5 cursor-pointer border shadow-500/100 text-white rounded-md text-sm gap-2",
+                        variantClasses,
+                        className
+                    )}
+                    {...props}
+                >
+                    {children}
+                </button>
+            </div>
+        </div>
+    );
+});
+
+
+////////////////////////////////////////////////////////////
+
+export function getCookie(name) {
+    const cookies = document.cookie.split("; ");
+    for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].split("=");
+        if (cookie[0] === name) {
+            return decodeURIComponent(cookie[1]);
+        }
+    }
+    return null;
+}
+
+export function setCookie(name, value, days) {
+    const date = new Date();
+    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+    const expires = "expires=" + date.toUTCString();
+    document.cookie = name + "=" + value + ";" + expires + ";path=/";
+}
+
+
+////////////////////////////////////////////////////////////
+

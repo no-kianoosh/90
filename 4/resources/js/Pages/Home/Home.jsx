@@ -10,15 +10,16 @@ import Load from "@/comcom/Preload"
 
 const App = () => {
     return (
-        <Theme className="w-full h-full pt-1" style={{ background: "repeating-linear-gradient(180deg,#000 3px,#19085f 9px)", fontFamily: "!Vazir" }}>
-            <Load>
+        <Load>
+            <div className="w-full h-full min-h-screen flex flex-col">
                 <title>HopOn</title>
                 <NavigationDesktop />
                 <BodyDesktop />
                 <Footer />
                 <Alert />
-            </Load>
-        </Theme>
+            </div>
+        </Load >
+
     );
 };
 

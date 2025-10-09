@@ -1,10 +1,9 @@
-import { Clock } from '@/comcom/Mine';
+import { Clock, LogoutBtn } from '@/comcom/Mine';
 import { router, usePage, progress, Link } from '@inertiajs/react'
-import { LogoutBtn } from '../../../comcom/Mine';
-
-const Nav = () => {
+import clsx from "clsx";
+const Nav = (className) => {
     return (
-        <div className="w-full">
+        <div className={clsx("w-full", className)}>
             <nav className="flex items-center justify-between bg-blue-400/10 px-4 py-1 shadow-md text-blue-900 rounded-sm m-1 ">
                 <div className="fji gap-4">
                     <LogoutBtn />

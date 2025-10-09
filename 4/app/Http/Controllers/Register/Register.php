@@ -196,6 +196,17 @@ class Register extends Controller
     ///////////////////////////////////////////////////////
     public function drvpending(Request $p)
     {
+        session()->regenerateToken();
+        $fam = drv::firstWhere('no', Auth::user()->no)->fam;
+        return inertia('Register/DriverPending', [
+            "fam" => $fam,
+            "date" => Jdate()->format('%A %d %B'),
+        ]);
+    }
+
+    public function userBanned(Request $p)
+    {
+        session()->regenerateToken();
         return inertia('Register/DriverPending');
     }
 }

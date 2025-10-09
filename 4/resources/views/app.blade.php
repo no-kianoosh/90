@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa" dir="rtl" style="width: 100%; height: 100%;">
 
 <head>
     <meta charset="utf-8" />
@@ -9,7 +9,7 @@
     @inertiaHead
 </head>
 
-<body>
+<body class="w-full h-full bg-amber-50">
     @inertia
 </body>
 

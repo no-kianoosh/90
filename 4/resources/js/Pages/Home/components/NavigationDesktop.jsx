@@ -1,9 +1,10 @@
 
-import { DropdownMenu, Button, IconButton, Dialog, Flex, TextField } from "@radix-ui/themes";
+
 import { Car, List, Cross, CarTaxiFront, PersonStanding, Download, Search } from "lucide-react";
 import { useState } from "react"
 import { useContext } from 'react';
-import { scrollAndShine } from "../components/desk-comp/Card1";
+import { scrollAndShine, Button } from "@/comcom/Mine";
+import { DDWN } from "@/comcom/DropDown";
 import { Download_Modal, Rules_Modal, Login_Modal } from "./Modals"
 import { G, GSet } from "./../bmr1"
 
@@ -11,48 +12,32 @@ const NavigationDesktop = () => {
 
     return (
         <nav className="flex items-center justify-between bg-opacity-5 px-4 py-3 shadow-md text-blue-900 rounded-sm m-1">
-            <div className="flex flex-row gap-3">
-                <DropdownMenu.Root dir="rtl">
-                    <DropdownMenu.Trigger>
-                        <IconButton color="pink" variant="solid" className=" !py-4.5">
-                            <List width="18" height="18" />
-                        </IconButton>
-                    </DropdownMenu.Trigger>
-                    <DropdownMenu.Content >
-
-                        <DropdownMenu.Item color="red" className="w-full flex justify-between cursor-pointer gap-3" ><div>درباره ما</div>
-                            <div>⌘</div>
-                        </DropdownMenu.Item>
-                        <DropdownMenu.Separator />
-                        <DropdownMenu.Item color="blue" className="w-full flex justify-between cursor-pointer"><div>درباره ما</div>
-                            <div>⌘</div>
-                        </DropdownMenu.Item>
-                        <DropdownMenu.Separator />
-                        <DropdownMenu.Item color="black" className="w-full flex justify-between cursor-pointer"><div>درباره ما</div>
-                            <div>⌘</div>
-                        </DropdownMenu.Item>
-                        <DropdownMenu.Separator />
-                        <DropdownMenu.Item color="green" className="w-full flex justify-between cursor-pointer"><div>درباره ما</div>
-                            <div>⌘</div>
-                        </DropdownMenu.Item>
-
-                    </DropdownMenu.Content>
-                </DropdownMenu.Root>
-                <Button color="red" variant="surface" className="!border !cursor-pointer  !py-4.5 !bg-white"
-                    onClick={() => GSet((O) => { O.mod.login = true; O.user.type = "رانندگان" })}>
+            <div className="flex flex-row gap-3 ">
+                <DDWN btnClass="mt-2">
+                    <div className="stagger text-sm m-1 border border-red-200 flex text-center flex-col p-2 rounded-sm whitespace-nowrap gap-2 bg-red-400/20
+                    [&>div]: border-b [&>div]:cursor-pointer [&>div]:border-gray-200 [&>div]:shadow-black [&>div]:shadow [&>div]:bg-white [&>div]:rounded-sm [&>div]:p-1">
+                        <div>درباره ما</div>
+                        <div>راهنمایی</div>
+                        <div>سوالات متداول</div>
+                        <div>تماس با ما</div>
+                        <div>قوانین</div>
+                        <div>حریم خصوصی</div>
+                    </div>
+                </DDWN>
+                <Button variant="classic" className="bg-white !text-red-600 border-2 border-red-700" onClick={() => GSet((O) => { O.mod.login = true; O.user.type = "رانندگان" })}>
                     <div>ثبت سفر جدید</div>
                     <Cross width="18" height="18" />
                 </Button>
-                <Button onClick={scrollAndShine} color="blue" variant="surface" className="!border !cursor-pointer !bg-white !py-4.5" >
+                <Button variant="classic" className="bg-white !text-blue-800 border-2 border-sky-600" onClick={scrollAndShine}>
                     <div>جستجوی سفر</div>
-                    <Search width="22" height="22" />
+                    <Search width="18" height="18" />
                 </Button>
-                <Button color="red" variant="classic" className="!border !cursor-pointer  !py-4.5"
+                <Button variant="classic" className="bg-red-600 border"
                     onClick={() => GSet((O) => { O.mod.login = true; O.user.type = "رانندگان" })}>
                     <div>ورود رانندگان</div>
                     <CarTaxiFront width="18" height="18" />
                 </Button>
-                <Button color="blue" variant="classic" className="!border !cursor-pointer  !py-4.5"
+                <Button variant="classic" className="bg-sky-600"
                     onClick={() => GSet((O) => { O.mod.login = true; O.user.type = "مسافران" })}>
                     <div>ورود مسافران</div>
                     <PersonStanding width="18" height="18" />
@@ -60,7 +45,7 @@ const NavigationDesktop = () => {
             </div>
             <div className="flex flex-row gap-3 items-center">
                 <Button onClick={() => GSet((O) => O.mod.download = true)}
-                    color="jade" variant="solid" className="!border !cursor-pointer !flex-1" >
+                    variant="solid" className="bg-sky-600 px-3" >
                     <div>دانلود</div>
                     <Download height="18" />
                 </Button>
