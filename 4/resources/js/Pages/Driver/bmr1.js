@@ -3,28 +3,33 @@ import { immer } from "zustand/middleware/immer";
 
 export const G = create(
     immer((set) => ({
-
         mod: {
-            download: false,
-            login: false,
-            rules: false,
+            a1: false,
+            a2: false,
+            a3: false,
         },
         bod: {
-            b1: true,
-            b2: false,
+            newtrv: true,
+            trvs: false,
+            box: false,
+            trns: false,
+            spec: false,
         },
         user: {
             type: "مسافران",
         },
 
-        Update: (fn) =>
-            set((state) => {
-                fn(state);
+        Update: (fn) => set((O) => { fn(O); }),
+
+        Reset: (target) =>
+            set((O) => {
+                if (!O[target]) return; // safety check
+                Object.keys(O[target]).forEach((k) => {
+                    O[target][k] = false;
+                });
             }),
     }))
 );
 
-export const GSet = (fn) => {
-    G.getState().Update((O) => { fn(O) });
-};
-
+export const GSet = (fn) => G.getState().Update((O) => fn(O));
+export const RSet = (target) => G.getState().Reset(target);
